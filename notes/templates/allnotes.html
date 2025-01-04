@@ -10,6 +10,14 @@
 <body>
     <h2>Your notes:</h2>
     <div class="notes-container">
+        <div class="note">
+            <form action="/createnote/" method="post">
+                {% csrf_token %}
+                <div class="header" name="new_header"><input name="note-header" placeholder="Header"></div>
+                <div class="text" name="new_text"><textarea name="note-text" placeholder="Text"></textarea></div>
+                <div class="add-button"><input type="submit" value="Create note"></div>
+            </form>
+        </div>
         {% for note in notes_list %}
         <div class="note">
             <div class="header"><h3>{{ note.header }}</h3></div>
