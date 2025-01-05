@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from notes.views import all_notes, get_note, create_note
+from notes.views import all_notes, get_note, create_note, remove_note, edit_note
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', all_notes),
     path('createnote/', create_note),
+    path('removenote/<note_id>', remove_note),
+    path('editnote/<note_id>', edit_note),
     path('note/<note_id>', get_note),
 ]

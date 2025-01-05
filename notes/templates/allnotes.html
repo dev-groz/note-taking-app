@@ -20,7 +20,14 @@
         </div>
         {% for note in notes_list %}
         <div class="note">
-            <div class="header"><h3>{{ note.header }}</h3></div>
+            <div class="header"><h3>{{ note.header }}</h3>
+                <form action='/removenote/{{ note.id }}' method='get'>
+                    <button type="submit">X</button>
+                </form>
+                <form action='/note/{{ note.id }}' method='get'>
+                    <button type="submit">Edit</button>
+                </form>
+            </div>
             <div class="text"><p>{{ note.text }}</p></div>
             <div class="created"><p>{{ note.created }}</p></div>
         </div>
