@@ -29,7 +29,6 @@ def edit_note(req, note_id):
     if req.method == 'POST':
         header = req.POST.get('note-header')
         text = req.POST.get('note-text')
-        print(header, text)
         note.header = header
         note.text = text
         note.created
