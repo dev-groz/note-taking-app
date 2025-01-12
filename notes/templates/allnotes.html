@@ -1,35 +1,54 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All notes</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
 </head>
+
 <body>
-    <h2>Your notes:</h2>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">Note taking app</a>
+    </nav>
     <div class="notes-container">
         <div class="note">
-            <form action="/createnote/" method="post">
-                {% csrf_token %}
-                <div class="header" name="new_header"><input name="note-header" placeholder="Header"></div>
-                <div class="text" name="new_text"><textarea name="note-text" placeholder="Text"></textarea></div>
-                <div class="add-button"><input type="submit" value="Create note"></div>
-            </form>
+            <div class="input-group">
+                <div class="card" style="width: 18rem; height: 300px;">
+                    <div class="card-body">
+                        <form action="/createnote/" method="post">
+                            {% csrf_token %}
+                            <div class="input-header" name="new_header"><input name="note-header" placeholder="Header">
+                            </div>
+                            <div class="input-text" name="new_text"><textarea class="form-control" name="note-text"
+                                    placeholder="Text"></textarea></div>
+                            <div class="add-button"><button class="btn btn-primary" type="submit">Create note</div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
         {% for note in notes_list %}
         <div class="note">
-            <div class="header"><h3>{{ note.header }}</h3>
-                <form action='/removenote/{{ note.id }}' method='get'>
-                    <button type="submit">X</button>
-                </form>
-                <form action='/note/{{ note.id }}' method='get'>
-                    <button type="submit">Edit</button>
-                </form>
+            <div class="card" style="width: 18rem; height: 300px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ note.header }}</h5> 
+                    <div class="note-head">
+                        <form action='/note/{{ note.id }}' method='get'>
+                            <button type="submit" class="btn btn-warning fa fa-bars"></button>
+                        </form>
+                        <form action='/removenote/{{ note.id }}' method='get'>
+                            <button type="submit" class="btn btn-danger fa fa-trash"></button>
+                        </form>
+                    </div>
+                    <p class="card-text">{{ note.text }}</p>
+                    <h6 class="created mb-2 text-muted">{{ note.created }}</h6>
+                </div>
             </div>
-            <div class="text"><p>{{ note.text }}</p></div>
-            <div class="created"><p>{{ note.created }}</p></div>
         </div>
         {% endfor %}
     </div>
