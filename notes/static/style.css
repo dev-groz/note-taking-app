@@ -45,7 +45,7 @@ textarea{
     margin-bottom: 5px;
 }
 
-.add-button {
+.add-button {  /* for add-button horizontal alignment*/
     width: 50%;
     margin: 0 auto;
     text-align: left
