@@ -14,7 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
+
+from django.views.static import serve
+from django.conf import settings
 
 from notes.views import all_notes, get_note, create_note, remove_note, edit_note
 
@@ -25,4 +28,5 @@ urlpatterns = [
     path('removenote/<note_id>', remove_note),
     path('editnote/<note_id>', edit_note),
     path('note/<note_id>', get_note),
+    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT})
 ]

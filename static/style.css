@@ -1,0 +1,52 @@
+html,
+body {
+    height: 100vh;
+}
+
+.notes-container {
+    height: 100vh;
+    background-color: darkgray;
+}
+
+.note {
+    position: relative;
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+    margin: 5px;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.created {
+    position: absolute;
+    bottom: 0px;
+}
+
+textarea {
+    resize: none;
+    height: 150px;
+}
+
+input, 
+textarea{
+    width:100%;
+    display:block;
+    margin-bottom: 7px;
+}
+
+.note-head {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.note-head > form {
+    margin-bottom: 5px;
+}
+
+.add-button {  /* for add-button horizontal alignment*/
+    width: 50%;
+    margin: 0 auto;
+    text-align: left
+}
